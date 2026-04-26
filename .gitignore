@@ -1,0 +1,7 @@
+.env
+.venv
+.venv/
+__pycache__/
+.history/
+~WRL2394.tmp
+项目描述文档.docx
