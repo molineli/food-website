@@ -1,93 +1,60 @@
+
 # AGENTS.md
 
-本文件用于指导后续开发者或 AI coding agent 参与本项目开发。
+## Project
 
-## 项目方向
+This is a Chinese food popular science website.
 
-本项目是面向普通消费者的食品科学科普网站。所有实现都应服务于一个目标：把食品安全、营养、标签、热点和谣言内容转化为普通人能理解、能判断、能行动的信息。
+The website has five main modules:
 
-不要把项目做成行业门户、法规数据库、企业服务平台、医疗建议平台或养生号。
+1. 食品安全
+2. 食品营养
+3. 热点解读
+4. 标签识读
+5. 谣言澄清
 
-## 第一版优先级
+The project is not a food safety decision system.
+Do not implement risk decision engines, user-specific risk scoring, or medical nutrition advice in this project.
 
-第一版优先实现静态内容和轻交互功能：
+## Current Stage
 
-- 结构化文章
-- 分类筛选
-- 搜索
-- 风险/关注等级标签
-- 证据等级标签
-- 交互式标签识读
-- 谣言卡片
-- 权威来源说明
+Current stage: Phase 1 - Project foundation and information architecture.
 
-暂缓登录、评论、收藏、会员、社区、复杂后台、完整 AI 问答、数据库和个性化推荐。
+In this phase:
 
-## 内容数据
+- Use Next.js + TypeScript + Tailwind CSS.
+- Use local Markdown / MDX and JSON files as content sources.
+- Do not add database.
+- Do not add authentication.
+- Do not add AI API.
+- Do not add OCR.
+- Do not add complex backend services.
 
-内容建议使用 Markdown / JSON 文件管理。文章、谣言卡片、标签识读案例和来源条目应尽量保留结构化字段：
+## Development Rules
 
-```json
-{
-  "title": "农残检出不等于超标",
-  "category": "食品安全",
-  "tags": ["农残", "标准解读", "风险评估"],
-  "audience": ["普通消费者"],
-  "difficulty": "入门",
-  "evidence_level": "A",
-  "risk_level": "低关注",
-  "updated_at": "2026-04-25",
-  "sources": []
-}
-```
+1. Modify only files related to the current task.
+2. Do not rewrite the entire project.
+3. Prefer small, composable components.
+4. Keep content models in `types/content.ts`.
+5. Keep local data in `data/`.
+6. Keep article content in `content/`.
+7. Keep reusable components in `components/`.
+8. Keep data reading utilities in `lib/`.
 
-证据等级建议：
+## Content Principles
 
-- A：国家标准 / 官方指南
-- B：WHO / FAO / Codex / 权威机构
-- C：系统综述 / 高质量研究
-- D：单篇研究
-- E：新闻事件 / 专家观点
+1. Avoid sensational food safety claims.
+2. Avoid medical treatment advice.
+3. Avoid unsupported health claims.
+4. Use conservative wording for children, pregnant women, older adults, and immunocompromised people.
+5. Always distinguish between scientific explanation and consumer advice.
 
-关注等级建议：
+## Output Requirements
 
-- 低关注：一般消费者无需过度担心
-- 中关注：注意购买、储存和食用方式
-- 高关注：特殊人群应谨慎
-- 持续关注：信息仍在更新
+After completing a task, always report:
 
-## 页面与交互
-
-页面应优先做真实可用功能，不做空泛展示页。首页应包含搜索入口、今日热点、五大模块入口、热门谣言、最新文章和权威来源入口。
-
-文章详情页应包含标题、副标题、一句话结论、标签、关注等级、正文、误区澄清、普通人建议、参考来源、更新时间和免责声明。
-
-标签识读页应以交互式解释器为核心：食品包装示意图、可点击高亮区域和解释卡片。
-
-谣言澄清页应以卡片库为核心：流行说法、结论、为什么、普通人怎么做，并支持分类筛选。
-
-## 内容表达边界
-
-必须避免：
-
-- 夸大风险或制造焦虑
-- 标题党
-- 无来源结论
-- 医疗化承诺
-- 绝对化表达
-- “千万不能吃”“吃了就致癌”“某食物能排毒”“某食品能治疗疾病”等表达
-
-食品营养内容只提供一般性科普，不提供疾病治疗建议、个性化医学营养方案、减肥处方或保健食品功效承诺。
-
-## 设计风格
-
-建议采用清洁、明亮、低饱和绿色、米白背景和橙色点缀。可以使用卡片、轻插画和信息图表，但避免医疗网站、政府公告站、养生号和恐吓型食品安全标题风格。
-
-移动端和桌面端都应保证文字可读、信息不重叠、交互目标清晰。
-
-## 开发约束
-
-- 优先使用 Next.js / React、TypeScript、Tailwind CSS 和本地 Markdown / JSON 内容文件。
-- 保持内容模型可扩展，为后续 MDX、数据库、全文搜索和 AI 辅助能力预留空间。
-- 不要在第一版引入不必要的后端复杂度。
-- 新增页面时同步考虑导航、搜索、分类筛选和可访问性。
+1. Files changed.
+2. What was implemented.
+3. How to run.
+4. How to test.
+5. Known limitations.
