@@ -1,0 +1,54 @@
+[
+  {
+    "id": "label-case-wholegrain-biscuit",
+    "slug": "wholegrain-biscuit-label",
+    "title": "全麦饼干标签怎么读",
+    "description": "以示例包装说明配料表、营养成分表和宣称语的基础阅读方法。",
+    "category": "label_reading",
+    "format": "label_case",
+    "tags": ["标签识读", "配料表", "营养成分表"],
+    "publishedAt": "2026-04-26",
+    "updatedAt": "2026-04-26",
+    "evidenceLevel": "A",
+    "attentionLevel": "low",
+    "sourceIds": ["gb-28050", "samr-food-labeling"],
+    "productName": "示例全麦饼干",
+    "labelImage": "/images/examples/wholegrain-biscuit-label.png",
+    "regions": [
+      {
+        "id": "ingredients",
+        "label": "配料表",
+        "description": "配料通常按加入量递减排列，可用于判断主要原料和是否含有关注成分。",
+        "coordinates": {
+          "x": 8,
+          "y": 16,
+          "width": 40,
+          "height": 26
+        }
+      },
+      {
+        "id": "nutrition-facts",
+        "label": "营养成分表",
+        "description": "先确认计量单位，再比较能量、蛋白质、脂肪、碳水化合物和钠等项目。",
+        "coordinates": {
+          "x": 52,
+          "y": 18,
+          "width": 38,
+          "height": 36
+        }
+      },
+      {
+        "id": "claims",
+        "label": "宣称语",
+        "description": "如“全麦”“高纤”等宣称应结合配料表和营养成分表一起理解。",
+        "coordinates": {
+          "x": 10,
+          "y": 62,
+          "width": 76,
+          "height": 16
+        }
+      }
+    ],
+    "takeaway": "标签识读适合多处信息交叉查看，不建议只凭正面宣称判断食品整体特点。"
+  }
+]

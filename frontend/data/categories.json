@@ -1,0 +1,32 @@
+[
+  {
+    "id": "food_safety",
+    "slug": "safety",
+    "label": "食品安全",
+    "description": "关注家庭备餐、储存、加工和食品安全基础知识。"
+  },
+  {
+    "id": "nutrition",
+    "slug": "nutrition",
+    "label": "食品营养",
+    "description": "帮助读者理解营养成分表、膳食结构和食品营养信息。"
+  },
+  {
+    "id": "hot_topics",
+    "slug": "hot-topics",
+    "label": "热点解读",
+    "description": "用审慎语言解释食品相关热点话题和常见概念。"
+  },
+  {
+    "id": "label_reading",
+    "slug": "label-reader",
+    "label": "标签识读",
+    "description": "通过案例理解配料表、营养成分表和包装宣称。"
+  },
+  {
+    "id": "myth_busting",
+    "slug": "myths",
+    "label": "谣言澄清",
+    "description": "澄清常见食品谣言，区分科学解释和消费建议。"
+  }
+]
