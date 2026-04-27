@@ -11,6 +11,10 @@
     "updatedAt": "2026-04-26",
     "evidenceLevel": "B",
     "attentionLevel": "low",
+    "image": {
+      "src": "/images/content/overnight-water.svg",
+      "alt": "杯中饮用水与放置时间示意图"
+    },
     "sourceIds": ["who-drinking-water", "cfsa-food-safety-basics"],
     "claim": "隔夜水会产生大量有害物质，不能喝。",
     "verdict": "misleading",
@@ -29,6 +33,10 @@
     "updatedAt": "2026-04-26",
     "evidenceLevel": "A",
     "attentionLevel": "medium",
+    "image": {
+      "src": "/images/content/food-additives-ingredients.svg",
+      "alt": "食品添加剂与配料表信息示意图"
+    },
     "sourceIds": ["gb-2760", "samr-food-labeling"],
     "claim": "只要配料表里有食品添加剂，这个食品就不安全。",
     "verdict": "false",
@@ -47,6 +55,10 @@
     "updatedAt": "2026-04-26",
     "evidenceLevel": "B",
     "attentionLevel": "medium",
+    "image": {
+      "src": "/images/content/fruit-meal-balance.svg",
+      "alt": "水果与均衡餐盘对比示意图"
+    },
     "sourceIds": ["chinese-dietary-guidelines-2022"],
     "claim": "水果维生素多，所以只吃水果就能满足一餐需要。",
     "verdict": "misleading",

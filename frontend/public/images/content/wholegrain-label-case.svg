@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">全麦饼干包装标签识读示意图</title>
+  <desc id="desc">食品包装、配料表和营养成分表区域标注示意图。</desc>
+  <rect width="960" height="540" fill="#f1f1ea"/>
+  <rect x="140" y="82" width="680" height="376" rx="38" fill="#fffdf7"/>
+  <rect x="190" y="134" width="280" height="120" rx="18" fill="#edf4e9"/>
+  <rect x="510" y="134" width="260" height="210" rx="18" fill="#edf4f6"/>
+  <rect x="190" y="294" width="580" height="84" rx="18" fill="#f8efd8"/>
+  <rect x="224" y="174" width="190" height="16" rx="8" fill="#2f6b3c"/>
+  <rect x="224" y="210" width="150" height="14" rx="7" fill="#5ca06b"/>
+  <rect x="548" y="176" width="184" height="14" rx="7" fill="#2f6470"/>
+  <rect x="548" y="220" width="156" height="14" rx="7" fill="#7faeb5"/>
+  <rect x="548" y="264" width="180" height="14" rx="7" fill="#7faeb5"/>
+  <rect x="230" y="328" width="300" height="16" rx="8" fill="#7a5a18"/>
+</svg>

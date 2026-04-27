@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { Badge } from "@/components/badge";
@@ -21,7 +22,19 @@ export function ArticleCard({ article, href }: ArticleCardProps) {
   );
 
   return (
-    <article className="rounded-lg border border-[#dde6d8] bg-[#fffdf7] p-5 shadow-sm transition-shadow hover:shadow-md">
+    <article className="group rounded-2xl border border-[#dde6d8] bg-[#fffdf7]/90 p-5 shadow-sm transition-all duration-200 ease-out hover:-translate-y-1.5 hover:border-[#8fc49a] hover:bg-white hover:shadow-xl hover:shadow-[#1f3326]/10">
+      {article.image ? (
+        <div className="mb-5 aspect-video overflow-hidden rounded-xl bg-[#edf4e9]">
+          <Image
+            src={article.image.src}
+            alt={article.image.alt}
+            width={640}
+            height={360}
+            unoptimized
+            className="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+          />
+        </div>
+      ) : null}
       <div className="mb-3 flex flex-wrap gap-2">
         <Badge tone="green">{getContentCategoryLabel(article.category)}</Badge>
         {article.evidenceLevel ? (

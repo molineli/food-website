@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">杯中饮用水与放置时间示意图</title>
+  <desc id="desc">水杯、时钟和清洁桌面的示意图。</desc>
+  <rect width="960" height="540" fill="#edf4f6"/>
+  <rect x="210" y="132" width="230" height="300" rx="38" fill="#fffdf7"/>
+  <path d="M248 228h154l-22 154H270z" fill="#c9dedf"/>
+  <path d="M248 228h154" stroke="#2f6470" stroke-width="16" stroke-linecap="round"/>
+  <circle cx="640" cy="270" r="118" fill="#fffdf7"/>
+  <path d="M640 198v78l58 34" fill="none" stroke="#2f6b3c" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="640" cy="270" r="8" fill="#2f6b3c"/>
+</svg>

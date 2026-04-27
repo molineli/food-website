@@ -13,6 +13,10 @@
     "attentionLevel": "low",
     "sourceIds": ["gb-28050", "samr-food-labeling"],
     "productName": "示例全麦饼干",
+    "image": {
+      "src": "/images/content/wholegrain-label-case.svg",
+      "alt": "全麦饼干包装标签识读示意图"
+    },
     "labelImage": "/images/examples/wholegrain-biscuit-label.png",
     "regions": [
       {

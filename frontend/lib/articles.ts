@@ -4,6 +4,7 @@ import path from "node:path";
 import type {
   ArticleContent,
   AttentionLevel,
+  ContentImage,
   ContentCategory,
   EvidenceLevel,
 } from "@/types/content";
@@ -23,7 +24,7 @@ const categoryDirectories: Record<ContentCategory, string> = {
   myth_busting: "myths",
 };
 
-type FrontmatterValue = string | string[];
+type FrontmatterValue = string | string[] | ContentImage;
 type ArticleMeta = ArticleContent & {
   contentPath: string;
 };
@@ -55,6 +56,28 @@ function parseFrontmatter(fileContent: string, filePath: string) {
     const value = rawValue.trim();
 
     if (value === "") {
+      if (
+        lines[index + 1]?.startsWith("  ") &&
+        !lines[index + 1]?.trimStart().startsWith("- ")
+      ) {
+        const objectValue: Record<string, string> = {};
+
+        while (lines[index + 1]?.startsWith("  ")) {
+          index += 1;
+
+          const nestedMatch = lines[index]
+            .trim()
+            .match(/^([A-Za-z][A-Za-z0-9_-]*):\s*(.*)$/);
+
+          if (nestedMatch) {
+            objectValue[nestedMatch[1]] = stripQuotes(nestedMatch[2].trim());
+          }
+        }
+
+        meta[key] = objectValue as ContentImage;
+        continue;
+      }
+
       const list: string[] = [];
 
       while (lines[index + 1]?.trimStart().startsWith("- ")) {
@@ -74,6 +97,21 @@ function parseFrontmatter(fileContent: string, filePath: string) {
 
 function stripQuotes(value: string) {
   return value.replace(/^["']|["']$/g, "");
+}
+
+function optionalImage(meta: Record<string, FrontmatterValue>) {
+  const image = meta.image;
+
+  if (
+    typeof image === "object" &&
+    !Array.isArray(image) &&
+    typeof image.src === "string" &&
+    typeof image.alt === "string"
+  ) {
+    return image;
+  }
+
+  return undefined;
 }
 
 function requireString(
@@ -114,6 +152,7 @@ function readArticleFile(filePath: string): ArticleMeta {
       typeof meta.publishedAt === "string" ? meta.publishedAt : updatedAt,
     updatedAt,
     sourceIds: Array.isArray(meta.sourceIds) ? meta.sourceIds : [],
+    image: optionalImage(meta),
     contentPath: filePath,
   };
 }

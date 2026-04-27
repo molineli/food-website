@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">营养成分表阅读示意图</title>
+  <desc id="desc">包装上的营养成分表和重点标注线条。</desc>
+  <rect width="960" height="540" fill="#edf4f6"/>
+  <rect x="170" y="76" width="620" height="388" rx="32" fill="#fffdf7"/>
+  <rect x="230" y="132" width="500" height="56" rx="12" fill="#2f6b3c"/>
+  <rect x="230" y="220" width="500" height="20" rx="10" fill="#c9dedf"/>
+  <rect x="230" y="270" width="410" height="20" rx="10" fill="#c9dedf"/>
+  <rect x="230" y="320" width="470" height="20" rx="10" fill="#c9dedf"/>
+  <rect x="230" y="370" width="330" height="20" rx="10" fill="#c9dedf"/>
+  <circle cx="702" cy="280" r="54" fill="#f8efd8"/>
+  <path d="M678 280h48M702 256v48" stroke="#7a5a18" stroke-width="14" stroke-linecap="round"/>
+</svg>

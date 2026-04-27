@@ -22,6 +22,12 @@ export type ContentFormat =
   | "label_case"
   | "interactive";
 
+/** Image displayed on content cards and listing pages. */
+export type ContentImage = {
+  src: string;
+  alt: string;
+};
+
 /** External or local source used to support a content item. */
 export type SourceEntry = {
   id: string;
@@ -56,6 +62,7 @@ export type BaseContentMeta = {
 /** Long-form science explanation or consumer education article. */
 export type ArticleContent = BaseContentMeta & {
   format: "article";
+  image?: ContentImage;
   readingMinutes?: number;
   summary?: string;
   difficulty?: "入门" | "进阶" | "专业";
@@ -95,6 +102,7 @@ export type InfographicContent = BaseContentMeta & {
 /** Rumor clarification card that separates claim, explanation, and advice. */
 export type MythCard = BaseContentMeta & {
   format: "myth_card";
+  image?: ContentImage;
   claim: string;
   verdict: "false" | "misleading" | "partly_true" | "unverified";
   explanation: string;
@@ -118,6 +126,7 @@ export type LabelRegion = {
 /** Label reading case that explains selected regions of a food package label. */
 export type LabelCase = BaseContentMeta & {
   format: "label_case";
+  image?: ContentImage;
   productName: string;
   labelImage: string;
   regions: LabelRegion[];

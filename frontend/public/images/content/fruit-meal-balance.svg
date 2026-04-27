@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">水果与均衡餐盘对比示意图</title>
+  <desc id="desc">水果和餐盘的均衡饮食示意图。</desc>
+  <rect width="960" height="540" fill="#edf4e9"/>
+  <circle cx="324" cy="270" r="130" fill="#fffdf7"/>
+  <circle cx="278" cy="246" r="46" fill="#f8efd8"/>
+  <circle cx="344" cy="292" r="54" fill="#5ca06b"/>
+  <path d="M352 218c30-38 64-38 96-12" fill="none" stroke="#2f6b3c" stroke-width="16" stroke-linecap="round"/>
+  <circle cx="650" cy="270" r="130" fill="#fffdf7"/>
+  <path d="M650 140v260M520 270h260" stroke="#dde6d8" stroke-width="16"/>
+  <path d="M650 270l92-92" stroke="#2f6b3c" stroke-width="18" stroke-linecap="round"/>
+</svg>

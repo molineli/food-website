@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { Badge } from "@/components/badge";
 import { SectionHeader } from "@/components/section-header";
 import { getLabelCases } from "@/lib/labelCases";
@@ -17,8 +19,20 @@ export default function LabelReaderPage() {
           {labelCases.map((labelCase) => (
             <article
               key={labelCase.slug}
-              className="rounded-lg border border-[#dde6d8] bg-[#fffdf7] p-5 shadow-sm"
+              className="group rounded-2xl border border-[#dde6d8] bg-[#fffdf7]/90 p-5 shadow-sm transition-all duration-200 ease-out hover:-translate-y-1.5 hover:border-[#8fc49a] hover:bg-white hover:shadow-xl hover:shadow-[#1f3326]/10"
             >
+              {labelCase.image ? (
+                <div className="mb-5 aspect-video overflow-hidden rounded-xl bg-[#edf4e9]">
+                  <Image
+                    src={labelCase.image.src}
+                    alt={labelCase.image.alt}
+                    width={640}
+                    height={360}
+                    unoptimized
+                    className="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+                  />
+                </div>
+              ) : null}
               <h3 className="text-lg font-semibold tracking-normal text-[#1f3326]">
                 {labelCase.title}
               </h3>

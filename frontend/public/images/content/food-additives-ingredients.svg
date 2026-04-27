@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">食品添加剂与配料表示意图</title>
+  <desc id="desc">食品配料表、标准书页和绿色标记组成的示意图。</desc>
+  <rect width="960" height="540" fill="#f8efd8"/>
+  <rect x="120" y="100" width="350" height="340" rx="30" fill="#fffdf7"/>
+  <rect x="520" y="100" width="320" height="340" rx="30" fill="#edf4e9"/>
+  <rect x="170" y="162" width="230" height="22" rx="11" fill="#2f6b3c"/>
+  <rect x="170" y="220" width="250" height="18" rx="9" fill="#dde6d8"/>
+  <rect x="170" y="268" width="190" height="18" rx="9" fill="#dde6d8"/>
+  <rect x="170" y="316" width="220" height="18" rx="9" fill="#dde6d8"/>
+  <circle cx="680" cy="270" r="82" fill="#fffdf7"/>
+  <path d="M638 270l28 30 62-72" fill="none" stroke="#2f6b3c" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
