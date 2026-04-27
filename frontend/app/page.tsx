@@ -1,8 +1,10 @@
 import { CategoryEntryCard } from "@/components/category-entry-card";
 import { FeaturedArticle } from "@/components/featured-article";
+import { MythCarousel } from "@/components/myth-carousel";
 import { SectionHeader } from "@/components/section-header";
 import { SearchBox } from "@/components/search-box";
 import { getTodayHotTopicArticle } from "@/lib/articles";
+import { getHotMyths } from "@/lib/myths";
 
 const categoryEntries = [
   {
@@ -39,6 +41,7 @@ const categoryEntries = [
 
 export default function Home() {
   const todayHotTopic = getTodayHotTopicArticle();
+  const hotMyths = getHotMyths(3);
 
   return (
     <main className="flex-1 bg-[#f8f7f0] text-[#1f3326]">
@@ -71,6 +74,16 @@ export default function Home() {
           </div>
         </section>
       ) : null}
+
+      <section className="px-6 pb-16 sm:px-8">
+        <div className="mx-auto max-w-6xl space-y-6">
+          <SectionHeader
+            title="热门谣言澄清"
+            description="拆解常见食品说法，帮助你区分事实、误导和证据不足。"
+          />
+          <MythCarousel myths={hotMyths} />
+        </div>
+      </section>
 
       <section className="px-6 pb-16 sm:px-8">
         <div className="mx-auto max-w-6xl space-y-6">

@@ -32,3 +32,8 @@ export function getMyths(): MythCard[] {
 export function getMythBySlug(slug: string): MythCard | undefined {
   return getMyths().find((myth) => myth.slug === slug);
 }
+
+/** Returns the first local myth cards for homepage hot myth clarification. */
+export function getHotMyths(limit: number): MythCard[] {
+  return getMyths().slice(0, limit);
+}

@@ -1,7 +1,11 @@
 import Image from "next/image";
 
 import { Badge } from "@/components/badge";
-import { getMythVerdictLabel } from "@/lib/content-labels";
+import {
+  getAttentionLevelLabel,
+  getEvidenceLevelLabel,
+  getMythVerdictLabel,
+} from "@/lib/content-labels";
 import type { MythCard as MythCardContent } from "@/types/content";
 
 type MythCardProps = {
@@ -25,6 +29,12 @@ export function MythCard({ myth }: MythCardProps) {
       ) : null}
       <div className="mb-3 flex flex-wrap gap-2">
         <Badge tone="amber">{getMythVerdictLabel(myth.verdict)}</Badge>
+        {myth.evidenceLevel ? (
+          <Badge tone="blue">{getEvidenceLevelLabel(myth.evidenceLevel)}</Badge>
+        ) : null}
+        {myth.attentionLevel ? (
+          <Badge tone="green">{getAttentionLevelLabel(myth.attentionLevel)}</Badge>
+        ) : null}
         {myth.tags.map((tag) => (
           <Badge key={tag}>{tag}</Badge>
         ))}
