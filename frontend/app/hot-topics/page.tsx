@@ -15,11 +15,7 @@ export default function HotTopicsPage() {
         />
         <div className="grid gap-4 md:grid-cols-2">
           {articles.map((article) => (
-            <ArticleCard
-              key={article.slug}
-              article={article}
-              href={`/hot-topics/${article.slug}`}
-            />
+            <ArticleCard key={article.slug} article={article} />
           ))}
         </div>
       </div>
