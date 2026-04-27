@@ -47,15 +47,15 @@ export async function generateMetadata({
     description,
     openGraph: article.image
       ? {
-          title: article.title,
-          description,
-          images: [
-            {
-              url: article.image.src,
-              alt: article.image.alt,
-            },
-          ],
-        }
+        title: article.title,
+        description,
+        images: [
+          {
+            url: article.image.src,
+            alt: article.image.alt,
+          },
+        ],
+      }
       : undefined,
   };
 }

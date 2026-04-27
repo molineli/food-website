@@ -49,7 +49,7 @@ export default function Home() {
 
   return (
     <main className="flex-1 bg-[#f8f7f0] text-[#1f3326]">
-      <section className="px-6 pb-14 pt-10 sm:px-8 sm:pt-12">
+      <section className="px-6 pb-12 pt-8 sm:px-8 sm:pt-10">
         <div className="mx-auto w-full max-w-3xl text-center">
           <p className="text-lg leading-8 text-[#526158]">
             面向普通消费者，帮助用户看懂食品安全、食品营养、食品标签与食品热点

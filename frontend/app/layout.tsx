@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+  ),
   title: "食品科普网站",
   description: "面向普通消费者的食品安全、食品营养、食品标签与食品热点科普平台。",
 };
