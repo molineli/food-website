@@ -65,6 +65,7 @@ export type BaseContentMeta = {
 /** Long-form science explanation or consumer education article. */
 export type ArticleContent = BaseContentMeta & {
   format: "article";
+  content?: string;
   readingMinutes?: number;
   summary?: string;
   conclusion?: string;

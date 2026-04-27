@@ -1,4 +1,3 @@
-
 # AGENTS.md
 
 ## Project
@@ -76,15 +75,14 @@ Do not add:
 3. Do not rewrite the entire project.
 4. Prefer small, composable components.
 5. Reuse Phase 1 types, data readers, and display components whenever possible.
-6. Each added function needs to have a comment description.
-7. Keep content models in `types/content.ts`.
-8. Keep local data in `data/`.
-9. Keep article content in `content/`.
-10. Keep reusable components in `components/`.
-11. Keep data reading utilities in `lib/`.
-12. Keep route-level page composition in `app/` or `src/app/`, following the existing project structure.
-13. Do not duplicate content data inside pages when the same data can be read from `content/` or `data/`.
-14. Do not introduce new dependencies unless clearly necessary and lightweight.
+6. Keep content models in `types/content.ts`.
+7. Keep local data in `data/`.
+8. Keep article content in `content/`.
+9. Keep reusable components in `components/`.
+10. Keep data reading utilities in `lib/`.
+11. Keep route-level page composition in `app/` or `src/app/`, following the existing project structure.
+12. Do not duplicate content data inside pages when the same data can be read from `content/` or `data/`.
+13. Do not introduce new dependencies unless clearly necessary and lightweight.
 
 ## Homepage Requirements
 

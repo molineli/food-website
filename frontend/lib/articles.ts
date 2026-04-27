@@ -24,6 +24,7 @@ const categoryDirectories: Record<ContentCategory, string> = {
   myth_busting: "myths",
 };
 
+type ArticleCategoryInput = ContentCategory | "safety" | "hot-topics";
 type FrontmatterValue = string | string[] | ContentImage | boolean;
 type ArticleMeta = ArticleContent & {
   contentPath: string;
@@ -166,6 +167,7 @@ function requireString(
 function readArticleFile(filePath: string): ArticleMeta {
   const fileContent = readFileSync(filePath, "utf8");
   const meta = parseFrontmatter(fileContent, filePath);
+  const content = parseArticleContent(fileContent, filePath);
   const slug = requireString(meta, "slug", filePath);
   const updatedAt = requireString(meta, "updatedAt", filePath);
 
@@ -195,12 +197,46 @@ function readArticleFile(filePath: string): ArticleMeta {
     mythClarifications: optionalStringArray(meta, "mythClarifications"),
     advice: optionalStringArray(meta, "advice"),
     disclaimer: optionalString(meta, "disclaimer"),
+    content,
     contentPath: filePath,
   };
 }
 
-/** Reads all local MDX article metadata from the content directory. */
-export function getArticles(): ArticleMeta[] {
+function parseArticleContent(fileContent: string, filePath: string) {
+  const match = fileContent.match(/^---\r?\n[\s\S]*?\r?\n---/);
+
+  if (!match) {
+    throw new Error(`Missing frontmatter in article file: ${filePath}`);
+  }
+
+  return fileContent.slice(match[0].length).trim();
+}
+
+function normalizeArticleCategory(
+  category: ArticleCategoryInput,
+): ContentCategory {
+  if (category === "safety") {
+    return "food_safety";
+  }
+
+  if (category === "hot-topics") {
+    return "hot_topics";
+  }
+
+  return category;
+}
+
+function sortByUpdatedAtDesc(articles: ArticleMeta[]) {
+  return [...articles].sort((first, second) => {
+    const firstDate = first.updatedAt ?? first.publishedAt;
+    const secondDate = second.updatedAt ?? second.publishedAt;
+
+    return secondDate.localeCompare(firstDate);
+  });
+}
+
+/** Reads all local MDX articles from supported content category directories. */
+export function getAllArticles(): ArticleMeta[] {
   if (!existsSync(contentRoot)) {
     return [];
   }
@@ -208,9 +244,17 @@ export function getArticles(): ArticleMeta[] {
   return articleCategories.flatMap((category) => getArticlesByCategory(category));
 }
 
-/** Reads local MDX article metadata for one content category. */
-export function getArticlesByCategory(category: ContentCategory): ArticleMeta[] {
-  const directoryName = categoryDirectories[category];
+/** Backward-compatible alias for reading all local MDX articles. */
+export function getArticles(): ArticleMeta[] {
+  return getAllArticles();
+}
+
+/** Reads local MDX articles for one content category or route segment. */
+export function getArticlesByCategory(
+  category: ArticleCategoryInput,
+): ArticleMeta[] {
+  const normalizedCategory = normalizeArticleCategory(category);
+  const directoryName = categoryDirectories[normalizedCategory];
   const directoryPath = path.join(contentRoot, directoryName);
 
   if (!existsSync(directoryPath)) {
@@ -222,7 +266,25 @@ export function getArticlesByCategory(category: ContentCategory): ArticleMeta[] 
     .map((fileName) => readArticleFile(path.join(directoryPath, fileName)));
 }
 
-/** Finds one local MDX article by slug. */
-export function getArticleBySlug(slug: string): ArticleMeta | undefined {
-  return getArticles().find((article) => article.slug === slug);
+/** Finds one local MDX article by slug, returning null when it is missing. */
+export function getArticleBySlug(slug: string): ArticleMeta | null {
+  return getAllArticles().find((article) => article.slug === slug) ?? null;
+}
+
+/** Returns the latest local MDX articles sorted by updatedAt descending. */
+export function getLatestArticles(limit: number): ArticleMeta[] {
+  return sortByUpdatedAtDesc(getAllArticles()).slice(0, limit);
+}
+
+/** Returns featured local MDX articles, falling back to latest articles if none are featured. */
+export function getFeaturedArticles(limit: number): ArticleMeta[] {
+  const featuredArticles = sortByUpdatedAtDesc(
+    getAllArticles().filter((article) => article.featured),
+  );
+
+  if (featuredArticles.length === 0) {
+    return getLatestArticles(limit);
+  }
+
+  return featuredArticles.slice(0, limit);
 }
