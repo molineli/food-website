@@ -30,6 +30,7 @@ type ArticleMeta = ArticleContent & {
   contentPath: string;
 };
 
+/** Parses the simple YAML-like frontmatter used by local MDX article files. */
 function parseFrontmatter(fileContent: string, filePath: string) {
   const match = fileContent.match(/^---\r?\n([\s\S]*?)\r?\n---/);
 
@@ -96,6 +97,7 @@ function parseFrontmatter(fileContent: string, filePath: string) {
   return meta;
 }
 
+/** Converts quoted scalar frontmatter values and boolean strings into typed values. */
 function parseScalarValue(value: string) {
   const normalizedValue = stripQuotes(value);
 
@@ -110,10 +112,12 @@ function parseScalarValue(value: string) {
   return normalizedValue;
 }
 
+/** Removes one pair of wrapping single or double quotes from a frontmatter value. */
 function stripQuotes(value: string) {
   return value.replace(/^["']|["']$/g, "");
 }
 
+/** Reads the optional card image object from parsed article frontmatter. */
 function optionalImage(meta: Record<string, FrontmatterValue>) {
   const image = meta.image;
 
@@ -129,12 +133,14 @@ function optionalImage(meta: Record<string, FrontmatterValue>) {
   return undefined;
 }
 
+/** Reads an optional string field from parsed article frontmatter. */
 function optionalString(meta: Record<string, FrontmatterValue>, key: string) {
   const value = meta[key];
 
   return typeof value === "string" ? value : undefined;
 }
 
+/** Reads an optional string array field from parsed article frontmatter. */
 function optionalStringArray(
   meta: Record<string, FrontmatterValue>,
   key: string,
@@ -144,12 +150,14 @@ function optionalStringArray(
   return Array.isArray(value) ? value : undefined;
 }
 
+/** Reads an optional boolean field from parsed article frontmatter. */
 function optionalBoolean(meta: Record<string, FrontmatterValue>, key: string) {
   const value = meta[key];
 
   return typeof value === "boolean" ? value : undefined;
 }
 
+/** Reads a required string field and reports which article file is invalid. */
 function requireString(
   meta: Record<string, FrontmatterValue>,
   key: string,
@@ -164,6 +172,7 @@ function requireString(
   return value;
 }
 
+/** Reads one MDX article file and converts its frontmatter and body into ArticleMeta. */
 function readArticleFile(filePath: string): ArticleMeta {
   const fileContent = readFileSync(filePath, "utf8");
   const meta = parseFrontmatter(fileContent, filePath);
@@ -202,6 +211,7 @@ function readArticleFile(filePath: string): ArticleMeta {
   };
 }
 
+/** Extracts the raw MDX body content after the frontmatter block. */
 function parseArticleContent(fileContent: string, filePath: string) {
   const match = fileContent.match(/^---\r?\n[\s\S]*?\r?\n---/);
 
@@ -212,6 +222,7 @@ function parseArticleContent(fileContent: string, filePath: string) {
   return fileContent.slice(match[0].length).trim();
 }
 
+/** Maps route segment category names to internal content category keys. */
 function normalizeArticleCategory(
   category: ArticleCategoryInput,
 ): ContentCategory {
@@ -226,6 +237,7 @@ function normalizeArticleCategory(
   return category;
 }
 
+/** Sorts article copies by updatedAt, falling back to publishedAt. */
 function sortByUpdatedAtDesc(articles: ArticleMeta[]) {
   return [...articles].sort((first, second) => {
     const firstDate = first.updatedAt ?? first.publishedAt;
@@ -287,4 +299,14 @@ export function getFeaturedArticles(limit: number): ArticleMeta[] {
   }
 
   return featuredArticles.slice(0, limit);
+}
+
+/** Returns one hot-topic article for the homepage highlight, preferring featured content. */
+export function getTodayHotTopicArticle(): ArticleMeta | null {
+  const hotTopicArticles = getArticlesByCategory("hot-topics");
+  const featuredHotTopic = sortByUpdatedAtDesc(
+    hotTopicArticles.filter((article) => article.featured),
+  )[0];
+
+  return featuredHotTopic ?? sortByUpdatedAtDesc(hotTopicArticles)[0] ?? null;
 }
