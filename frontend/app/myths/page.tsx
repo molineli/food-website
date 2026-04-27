@@ -9,7 +9,6 @@ export default function MythsPage() {
     <main className="flex-1 bg-[#f8f7f0] px-6 py-12 text-[#1f3326] sm:px-8">
       <div className="mx-auto max-w-6xl space-y-8">
         <SectionHeader
-          eyebrow="内容导航"
           title="谣言澄清"
           description="识别、拆解和解释食品谣言，帮助用户形成更稳妥的科学判断。"
         />
