@@ -24,7 +24,7 @@ const categoryDirectories: Record<ContentCategory, string> = {
   myth_busting: "myths",
 };
 
-type FrontmatterValue = string | string[] | ContentImage;
+type FrontmatterValue = string | string[] | ContentImage | boolean;
 type ArticleMeta = ArticleContent & {
   contentPath: string;
 };
@@ -89,10 +89,24 @@ function parseFrontmatter(fileContent: string, filePath: string) {
       continue;
     }
 
-    meta[key] = stripQuotes(value);
+    meta[key] = parseScalarValue(value);
   }
 
   return meta;
+}
+
+function parseScalarValue(value: string) {
+  const normalizedValue = stripQuotes(value);
+
+  if (normalizedValue === "true") {
+    return true;
+  }
+
+  if (normalizedValue === "false") {
+    return false;
+  }
+
+  return normalizedValue;
 }
 
 function stripQuotes(value: string) {
@@ -112,6 +126,27 @@ function optionalImage(meta: Record<string, FrontmatterValue>) {
   }
 
   return undefined;
+}
+
+function optionalString(meta: Record<string, FrontmatterValue>, key: string) {
+  const value = meta[key];
+
+  return typeof value === "string" ? value : undefined;
+}
+
+function optionalStringArray(
+  meta: Record<string, FrontmatterValue>,
+  key: string,
+) {
+  const value = meta[key];
+
+  return Array.isArray(value) ? value : undefined;
+}
+
+function optionalBoolean(meta: Record<string, FrontmatterValue>, key: string) {
+  const value = meta[key];
+
+  return typeof value === "boolean" ? value : undefined;
 }
 
 function requireString(
@@ -138,6 +173,7 @@ function readArticleFile(filePath: string): ArticleMeta {
     id: slug,
     slug,
     title: requireString(meta, "title", filePath),
+    subtitle: optionalString(meta, "subtitle"),
     description: requireString(meta, "description", filePath),
     category: requireString(meta, "category", filePath) as ContentCategory,
     format: "article",
@@ -153,6 +189,12 @@ function readArticleFile(filePath: string): ArticleMeta {
     updatedAt,
     sourceIds: Array.isArray(meta.sourceIds) ? meta.sourceIds : [],
     image: optionalImage(meta),
+    featured: optionalBoolean(meta, "featured"),
+    summary: optionalString(meta, "summary"),
+    conclusion: optionalString(meta, "conclusion"),
+    mythClarifications: optionalStringArray(meta, "mythClarifications"),
+    advice: optionalStringArray(meta, "advice"),
+    disclaimer: optionalString(meta, "disclaimer"),
     contentPath: filePath,
   };
 }
