@@ -1,9 +1,11 @@
 import { CategoryEntryCard } from "@/components/category-entry-card";
+import { CompactArticleItem } from "@/components/compact-article-item";
 import { FeaturedArticle } from "@/components/featured-article";
+import { FeaturedArticleCard } from "@/components/featured-article-card";
 import { MythCarousel } from "@/components/myth-carousel";
 import { SectionHeader } from "@/components/section-header";
 import { SearchBox } from "@/components/search-box";
-import { getTodayHotTopicArticle } from "@/lib/articles";
+import { getLatestArticles, getTodayHotTopicArticle } from "@/lib/articles";
 import { getHotMyths } from "@/lib/myths";
 
 const categoryEntries = [
@@ -42,19 +44,15 @@ const categoryEntries = [
 export default function Home() {
   const todayHotTopic = getTodayHotTopicArticle();
   const hotMyths = getHotMyths(3);
+  const latestArticles = getLatestArticles(4);
+  const [featuredLatestArticle, ...compactLatestArticles] = latestArticles;
 
   return (
     <main className="flex-1 bg-[#f8f7f0] text-[#1f3326]">
-      <section className="px-6 py-16 sm:px-8">
+      <section className="px-6 pb-14 pt-10 sm:px-8 sm:pt-12">
         <div className="mx-auto w-full max-w-3xl text-center">
-          <p className="mb-4 text-sm font-medium text-[#4f7f58]">
-            食品科学科普平台
-          </p>
-          <h1 className="text-4xl font-semibold tracking-normal sm:text-5xl">
-            食识堂
-          </h1>
-          <p className="mt-6 text-lg leading-8 text-[#526158]">
-            面向普通消费者，帮助用户看懂食品安全、食品营养、食品标签与食品热点。
+          <p className="text-lg leading-8 text-[#526158]">
+            面向普通消费者，帮助用户看懂食品安全、食品营养、食品标签与食品热点
           </p>
           <SearchBox />
         </div>
@@ -84,6 +82,32 @@ export default function Home() {
           <MythCarousel myths={hotMyths} />
         </div>
       </section>
+
+      {featuredLatestArticle ? (
+        <section className="px-6 pb-16 sm:px-8">
+          <div className="mx-auto max-w-6xl space-y-6">
+            <SectionHeader
+              title="最新科普文章"
+              description="持续更新食品安全、营养、标签与热点解读内容。"
+            />
+            <div className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+              <FeaturedArticleCard
+                article={featuredLatestArticle}
+                href={`/articles/${featuredLatestArticle.slug}`}
+              />
+              <div className="grid gap-4">
+                {compactLatestArticles.map((article) => (
+                  <CompactArticleItem
+                    key={article.slug}
+                    article={article}
+                    href={`/articles/${article.slug}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section className="px-6 pb-16 sm:px-8">
         <div className="mx-auto max-w-6xl space-y-6">

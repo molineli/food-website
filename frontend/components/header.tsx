@@ -31,9 +31,12 @@ export function Header() {
       <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-5 sm:px-8 lg:flex-row lg:items-center lg:justify-between">
         <Link
           href="/"
-          className="text-xl font-semibold tracking-normal text-[#2f6b3c]"
+          className="flex items-baseline gap-3 text-[#2f6b3c]"
         >
-          食识堂
+          <span className="text-xl font-semibold tracking-normal">食识堂</span>
+          <span className="hidden text-sm font-medium text-[#6f8d75] sm:inline">
+            食品科学科普平台
+          </span>
         </Link>
         <nav aria-label="主导航">
           <ul className="flex flex-wrap items-center gap-2 text-sm font-medium">

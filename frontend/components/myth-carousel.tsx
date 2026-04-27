@@ -72,7 +72,7 @@ export function MythCarousel({
         ))}
       </div>
 
-      <div className="relative mx-auto hidden min-h-[640px] overflow-hidden md:block">
+      <div className="relative mx-auto hidden min-h-[550px] overflow-hidden md:block">
         {visibleMyths.map((myth, index) => {
           const position = getPosition(index, activeIndex);
 
