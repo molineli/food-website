@@ -2,7 +2,7 @@
   {
     "id": "myth-overnight-water",
     "slug": "overnight-water-is-toxic",
-    "title": "隔夜水不能喝吗",
+    "title": "隔夜水不能喝吗？",
     "description": "澄清隔夜水并不会因为放了一晚就自动变成有毒物质。",
     "category": "myth_busting",
     "format": "myth_card",
@@ -25,7 +25,39 @@
     "claim": "隔夜水会产生大量有害物质，不能喝？",
     "verdict": "misleading",
     "explanation": "单纯放置一晚并不会让饮用水自动产生大量有害物质。更需要关注的是容器是否清洁、是否加盖、环境温度以及放置时间。",
-    "consumerAdvice": "使用洁净容器盛水，放置时间较长或出现异味、浑浊时不建议继续饮用。"
+    "consumerAdvice": "使用洁净容器盛水，放置时间较长或出现异味、浑浊时不建议继续饮用。",
+    "storyScenes": [
+      {
+        "id": "overnight-water-claim",
+        "title": "流行说法从哪里来",
+        "narration": "很多人担心水放过一晚就会产生有害物质，于是把“隔夜”本身当成不能喝的理由。"
+      },
+      {
+        "id": "overnight-water-question",
+        "title": "先别急着把时间当作唯一标准",
+        "narration": "一杯水是否适合继续饮用，不只取决于放了几个小时，还和盛水容器、是否加盖以及周围环境有关。"
+      },
+      {
+        "id": "overnight-water-container",
+        "title": "容器清洁比“过夜”更关键",
+        "narration": "如果杯子或水壶本身不干净，或者长时间敞口放置，灰尘和微生物接触的机会会增加，这比“隔夜”这个标签更值得关注。"
+      },
+      {
+        "id": "overnight-water-environment",
+        "title": "温度和放置方式会影响变化速度",
+        "narration": "炎热环境、阳光直晒、未加盖保存，都可能让水的状态更容易发生变化；低温、洁净、加盖保存则更稳妥。"
+      },
+      {
+        "id": "overnight-water-senses",
+        "title": "观察异常信号",
+        "narration": "如果水已经出现异味、浑浊、漂浮物，或者你不确定它是否被污染，就不要继续饮用。"
+      },
+      {
+        "id": "overnight-water-action",
+        "title": "普通人可以这样判断",
+        "narration": "用干净容器盛水并尽量加盖保存；放置时间较长时优先换新水。判断重点不是“昨晚倒的”，而是“现在是否洁净、正常、适合饮用”。"
+      }
+    ]
   },
   {
     "id": "myth-additives-all-harmful",
@@ -53,12 +85,29 @@
     "claim": "只要配料表里有食品添加剂，这个食品就不安全？",
     "verdict": "false",
     "explanation": "食品添加剂有明确的使用范围和限量要求。依法合规使用的食品添加剂不等同于非法添加物。",
-    "consumerAdvice": "阅读配料表时，可以关注食品类别和整体营养组成，不必仅因看到添加剂名称就恐慌。"
+    "consumerAdvice": "阅读配料表时，可以关注食品类别和整体营养组成，不必仅因看到添加剂名称就恐慌。",
+    "storyScenes": [
+      {
+        "id": "additives-claim",
+        "title": "看到添加剂就担心",
+        "narration": "配料表里出现较长的添加剂名称，容易让人把“陌生”误解为“不安全”。"
+      },
+      {
+        "id": "additives-science",
+        "title": "合规使用和非法添加不是一回事",
+        "narration": "食品添加剂有允许使用的食品类别、功能和限量要求，依法合规使用并不等同于非法添加物。"
+      },
+      {
+        "id": "additives-action",
+        "title": "读配料表要看整体",
+        "narration": "购买食品时可以同时看食品类别、配料顺序和营养成分，不必只因为看到添加剂名称就恐慌。"
+      }
+    ]
   },
   {
     "id": "myth-fruit-meal-replacement",
     "slug": "fruit-can-replace-meals",
-    "title": "只吃水果可以代替正餐吗",
+    "title": "只吃水果可以替代正餐吗？",
     "description": "提醒水果不能长期替代结构完整的日常餐食。",
     "category": "myth_busting",
     "format": "myth_card",
@@ -80,6 +129,23 @@
     "claim": "水果维生素多，所以只吃水果就能满足一餐需要？",
     "verdict": "misleading",
     "explanation": "水果可以提供水分、部分维生素和膳食纤维，但通常不能完整提供正餐所需的蛋白质、脂肪和多种矿物质。",
-    "consumerAdvice": "水果适合作为日常饮食的一部分，不建议长期用单一水果替代正餐。"
+    "consumerAdvice": "水果适合作为日常饮食的一部分，不建议长期用单一水果替代正餐。",
+    "storyScenes": [
+      {
+        "id": "fruit-claim",
+        "title": "水果有营养，但不是全部营养",
+        "narration": "水果富含水分、部分维生素和膳食纤维，所以常被误认为可以直接替代一顿饭。"
+      },
+      {
+        "id": "fruit-science",
+        "title": "正餐需要更完整的结构",
+        "narration": "一餐通常还需要蛋白质、脂肪、主食和多种矿物质，只靠单一水果很难长期满足。"
+      },
+      {
+        "id": "fruit-action",
+        "title": "把水果放回合适的位置",
+        "narration": "水果适合作为日常饮食的一部分，可以搭配正餐或作为加餐，但不建议长期替代结构完整的正餐。"
+      }
+    ]
   }
 ]

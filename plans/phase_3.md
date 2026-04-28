@@ -103,3 +103,61 @@
 - 用户可以按模块、标签、难度、证据等级和关注等级搜索内容。
 - 新增页面能从导航入口访问，并具有基础 SEO metadata。
 - 交互功能具备基本移动端适配和可访问性支持。
+
+---
+
+## Task 3.2：谣言展示模式入口与页面骨架
+
+### 目标
+
+在谣言翻转卡片背面增加可跳转的“进入展示模式”入口，并为每条谣言建立独立展示页。展示页路由使用 `/myths/[slug]/showcase`，根据 `myths.json` 中的 `slug` 读取对应谣言数据，保持与现有网站一致的绿色主色、浅色背景、圆角卡片和 badge 风格。
+
+### 实现要求
+
+- 将背面“进入展示模式”改为 `next/link`，链接格式为 `/myths/${myth.slug}/showcase`。
+- 新增动态展示页，使用 `getMythBySlug(slug)` 获取数据，找不到时调用 `notFound()`。
+- 页面首屏展示：谣言标题、流行说法、结论 badge、证据等级 badge、关注等级 badge、标签、封面图，以及返回 `/myths` 的入口。
+- 补充 `generateStaticParams` 与 `generateMetadata`，metadata 标题格式为 `${myth.title} 展示模式 | 食品科普`。
+- 保持现有视觉体系，不引入新的 UI 库，不重构无关页面。
+
+### 验收标准
+
+- `/myths` 页面和首页热门谣言卡片背面的入口都能跳转到 `/myths/[slug]/showcase`。
+- 无效 slug 进入 404。
+- 页面样式与现有站点一致，移动端布局不溢出。
+- `cd frontend && npm run build` 通过。
+
+---
+
+## Task 3.3：按数字文件名顺序展示谣言分镜
+
+### 目标
+
+展示模式页面使用“图片 + 解说”的分镜式滚动展示。图片由目录自动读取，顺序由纯数字文件名决定；解说文案维护在 `myths.json` 的可选 `storyScenes` 字段中。
+
+### 路径与数据约定
+
+- 图片物理目录：`frontend/public/images/myth_clarification/[slug]/`
+- 页面引用路径：`/images/myth_clarification/[slug]/文件名`
+- 支持图片扩展名：`.png`、`.jpg`、`.jpeg`、`.webp`、`.svg`
+- 只读取纯数字文件名，例如 `1.png`、`2.jpg`、`10.webp`
+- 排序时解析文件名主干为数字，按数字升序排列，确保 `10` 排在 `2` 后面。
+
+### 实现要求
+
+- 在类型中新增 `StoryScene = { id: string; title: string; narration: string }`。
+- 在 `MythCard` 类型中增加可选 `storyScenes?: StoryScene[]`。
+- 在 `myths.json` 中为每条谣言补充 `storyScenes` 文案；图片路径不写入 JSON。
+- 在 `lib/myths.ts` 中新增服务端函数读取并排序对应 slug 的展示图片。
+- 新增客户端分镜组件，使用 `IntersectionObserver` 在分镜进入视口时触发淡入和轻微上移动画，动画只触发一次。
+- 第 N 张图片匹配 `storyScenes[N - 1]`；如果文案不足，使用 `explanation` 或 `consumerAdvice` 兜底；如果图片不足，使用 `myth.image` 或缺图兜底块。
+- 第一张分镜图优先加载，其余图片懒加载。
+
+### 验收标准
+
+- 展示页按 `1, 2, 3...` 数字顺序展示图片。
+- 非数字文件名不会显示，也不会导致页面报错。
+- 图片目录不存在时页面仍可用，并显示兜底图片或缺图提示。
+- 滚动进入视口时分镜平滑淡入，桌面端和移动端均无文字溢出。
+- 不引入新依赖，不使用 `any`。
+- `cd frontend && npm run build` 通过。

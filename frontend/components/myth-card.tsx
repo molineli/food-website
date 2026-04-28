@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import Link from "next/link";
+import { useState, type FocusEvent } from "react";
 
 import { Badge } from "@/components/badge";
 import {
@@ -21,19 +22,28 @@ export function MythCard({ myth }: MythCardProps) {
   const faceClasses =
     "absolute inset-0 flex flex-col overflow-hidden rounded-2xl border border-[#dde6d8] bg-[#fffdf7] p-5 shadow-sm transition-all duration-200 ease-out [backface-visibility:hidden] [-webkit-backface-visibility:hidden] group-hover:border-[#8fc49a] group-hover:shadow-xl group-hover:shadow-[#1f3326]/10";
 
+  const handleBlur = (event: FocusEvent<HTMLElement>) => {
+    const nextTarget = event.relatedTarget;
+
+    if (
+      !(nextTarget instanceof Node) ||
+      !event.currentTarget.contains(nextTarget)
+    ) {
+      setIsFlipped(false);
+    }
+  };
+
   return (
     <article
+      aria-label={`${myth.claim}，查看科学解释和普通人建议`}
       className="group h-[420px] [perspective:1200px] transition-transform duration-200 ease-out hover:-translate-y-1.5"
+      tabIndex={0}
       onMouseEnter={() => setIsFlipped(true)}
       onMouseLeave={() => setIsFlipped(false)}
       onFocus={() => setIsFlipped(true)}
-      onBlur={() => setIsFlipped(false)}
+      onBlur={handleBlur}
     >
-      <button
-        type="button"
-        aria-label={`${myth.claim}，查看科学解释和普通人建议`}
-        className="relative h-full w-full rounded-2xl text-left outline-none focus-visible:ring-2 focus-visible:ring-[#2f6b3c] focus-visible:ring-offset-2 focus-visible:ring-offset-[#f8f7f0]"
-      >
+      <div className="relative h-full w-full rounded-2xl text-left outline-none focus-visible:ring-2 focus-visible:ring-[#2f6b3c] focus-visible:ring-offset-2 focus-visible:ring-offset-[#f8f7f0]">
         <div
           className="absolute inset-0 rounded-2xl transition-transform duration-500 [transform-style:preserve-3d]"
           style={{
@@ -72,6 +82,9 @@ export function MythCard({ myth }: MythCardProps) {
             <h3 className="text-xl font-semibold leading-snug tracking-normal text-[#1f3326]">
               {myth.claim}
             </h3>
+            <p className="mt-3 line-clamp-3 text-sm leading-6 text-[#526158]">
+              {summary}
+            </p>
           </div>
 
           <div
@@ -88,9 +101,15 @@ export function MythCard({ myth }: MythCardProps) {
                 {myth.consumerAdvice}
               </div>
             ) : null}
+            <Link
+              href={`/myths/${myth.slug}/showcase`}
+              className="mt-auto inline-flex w-full items-center justify-center rounded-md bg-[#2f6b3c] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#255632] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2f6b3c] focus-visible:ring-offset-2 focus-visible:ring-offset-[#fffdf7]"
+            >
+              进入展示模式
+            </Link>
           </div>
         </div>
-      </button>
+      </div>
     </article>
   );
 }

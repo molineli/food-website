@@ -28,6 +28,13 @@ export type ContentImage = {
   alt: string;
 };
 
+/** One narrated scene used by scroll-based story display pages. */
+export type StoryScene = {
+  id: string;
+  title: string;
+  narration: string;
+};
+
 /** External or local source used to support a content item. */
 export type SourceEntry = {
   id: string;
@@ -113,6 +120,7 @@ export type MythCard = BaseContentMeta & {
   verdict: "false" | "misleading" | "partly_true" | "unverified";
   explanation: string;
   consumerAdvice?: string;
+  storyScenes?: StoryScene[];
 };
 
 /** A region on a food label used by label reading cases. */
