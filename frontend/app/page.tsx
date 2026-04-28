@@ -73,7 +73,7 @@ export default function Home() {
         </section>
       ) : null}
 
-      <section className="px-6 pb-16 sm:px-8">
+      <section className="px-6 pb-2 sm:px-8">
         <div className="mx-auto max-w-6xl space-y-6">
           <SectionHeader
             title="热门谣言澄清"

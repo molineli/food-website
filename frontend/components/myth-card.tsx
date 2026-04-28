@@ -19,23 +19,26 @@ export function MythCard({ myth }: MythCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
   const summary = myth.description || myth.title;
   const faceClasses =
-    "absolute inset-0 flex flex-col overflow-hidden rounded-2xl border border-[#dde6d8] bg-[#fffdf7]/90 p-5 shadow-sm transition-all duration-200 ease-out [backface-visibility:hidden] group-hover:border-[#8fc49a] group-hover:bg-white group-hover:shadow-xl group-hover:shadow-[#1f3326]/10";
+    "absolute inset-0 flex flex-col overflow-hidden rounded-2xl border border-[#dde6d8] bg-[#fffdf7] p-5 shadow-sm transition-all duration-200 ease-out [backface-visibility:hidden] [-webkit-backface-visibility:hidden] group-hover:border-[#8fc49a] group-hover:shadow-xl group-hover:shadow-[#1f3326]/10";
 
   return (
-    <article className="group h-[34rem] [perspective:1200px] transition-transform duration-200 ease-out hover:-translate-y-1.5 sm:h-[32rem]">
+    <article
+      className="group h-[420px] [perspective:1200px] transition-transform duration-200 ease-out hover:-translate-y-1.5"
+      onMouseEnter={() => setIsFlipped(true)}
+      onMouseLeave={() => setIsFlipped(false)}
+      onFocus={() => setIsFlipped(true)}
+      onBlur={() => setIsFlipped(false)}
+    >
       <button
         type="button"
-        aria-label={`${myth.claim}，查看科学解释`}
-        aria-pressed={isFlipped}
-        onClick={() => setIsFlipped((current) => !current)}
+        aria-label={`${myth.claim}，查看科学解释和普通人建议`}
         className="relative h-full w-full rounded-2xl text-left outline-none focus-visible:ring-2 focus-visible:ring-[#2f6b3c] focus-visible:ring-offset-2 focus-visible:ring-offset-[#f8f7f0]"
       >
         <div
-          className={[
-            "absolute inset-0 rounded-2xl transition-transform duration-500 [transform-style:preserve-3d]",
-            "group-hover:[transform:rotateY(180deg)] group-focus-within:[transform:rotateY(180deg)]",
-            isFlipped ? "[transform:rotateY(180deg)]" : "",
-          ].join(" ")}
+          className="absolute inset-0 rounded-2xl transition-transform duration-500 [transform-style:preserve-3d]"
+          style={{
+            transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+          }}
         >
           <div className={faceClasses}>
             {myth.image ? (
@@ -69,13 +72,10 @@ export function MythCard({ myth }: MythCardProps) {
             <h3 className="text-xl font-semibold leading-snug tracking-normal text-[#1f3326]">
               {myth.claim}
             </h3>
-            <p className="mt-3 line-clamp-3 text-sm leading-6 text-[#526158]">
-              {summary}
-            </p>
           </div>
 
           <div
-            className={`${faceClasses} overflow-y-auto bg-[#fffdf7] [transform:rotateY(180deg)]`}
+            className={`${faceClasses} overflow-y-auto [transform:rotateY(180deg)]`}
           >
             <h3 className="text-lg font-semibold leading-snug tracking-normal text-[#1f3326]">
               科学解释是怎样的呢？
